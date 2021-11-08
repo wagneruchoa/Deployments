@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ubuntu-nginx-pag-default-d
+  namespace: sicom1
+spec:
+  selector:
+    matchLabels:
+      app: ubuntu-nginx-pag-default-pod
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: ubuntu-nginx-pag-default-pod
+    spec:
+      containers:
+        - name: ubuntu-nginx-pag-default
+          image: detran/ubuntu-nginx-pag-default
+          ports:
+            - containerPort: 8080
